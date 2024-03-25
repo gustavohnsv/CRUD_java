@@ -65,6 +65,7 @@ public class LoginScreen extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 400);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(224, 222, 248));
 		contentPane.setBorder(null);
@@ -81,23 +82,31 @@ public class LoginScreen extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-					Connection con = ConnectionBuilder.connectDB();
-					String sql = "select * from userdata where username=? and keyword=?";
-					PreparedStatement stmt = con.prepareStatement(sql);
-					stmt.setString(1, txtUser.getText());
-					stmt.setString(2, new String (txtPassword.getPassword()));
-					ResultSet rs = stmt.executeQuery();
-					
-					if (rs.next()) {
-						JOptionPane.showMessageDialog(null, "Usuário válido.");
-					} else {
-						JOptionPane.showMessageDialog(null, "Usuário/Senha inválido(s).");
+				if (txtUser.getText().equals("") || new String (txtPassword.getPassword()).equals("")) {
+					JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos corretamente.");
+				} else {
+				
+					try {
+						Connection con = ConnectionBuilder.connectDB();
+						String sql = "select * from userdata where username=? and keyword=?";
+						PreparedStatement stmt = con.prepareStatement(sql);
+						stmt.setString(1, txtUser.getText());
+						stmt.setString(2, new String (txtPassword.getPassword()));
+						ResultSet rs = stmt.executeQuery();
+						
+						if (rs.next()) {
+							JOptionPane.showMessageDialog(null, "Bem vindo ao sistema.");
+							SignUpScreen exibir = new SignUpScreen();
+							exibir.setVisible(true);
+							setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(null, "Usuário/Senha inválido(s).");
+						}
+						stmt.close();
+						con.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-				stmt.close();
-				con.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
 				}
 			}
 		});
