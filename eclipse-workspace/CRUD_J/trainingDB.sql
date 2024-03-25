@@ -18,3 +18,7 @@ create table cars (
 );
 
 insert into userdata(username, keyword) values ('admin', '1234567890');
+
+# select * from userdata;
+
+# delete from userdata where id=?;

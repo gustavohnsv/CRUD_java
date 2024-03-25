@@ -52,11 +52,10 @@ public class SignUpScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUpScreen() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Pichau\\Downloads\\signup.png"));
-		setTitle("Cadastro");
+		setTitle("Cadastro de veículos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 434, 374);
+		setBounds(100, 100, 800, 480);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,6 +64,7 @@ public class SignUpScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnSignInCar = new JButton("Cadastrar");
+		btnSignInCar.setFocusable(false);
 		btnSignInCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -82,11 +82,11 @@ public class SignUpScreen extends JFrame {
 						stmt.setString(4, txtCarColor.getText());
 						stmt.execute();
 						
-							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-							txtNameCar.setText(" ");
-							txtBrandName.setText(" ");
-							txtModelYear.setText(" ");
-							txtCarColor.setText(" ");
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						txtNameCar.setText(" ");
+						txtBrandName.setText(" ");
+						txtModelYear.setText(" ");
+						txtCarColor.setText(" ");
 							
 						stmt.close();
 						con.close();
@@ -141,6 +141,7 @@ public class SignUpScreen extends JFrame {
 		contentPane.add(labelCor);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.setFocusable(false);
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja sair?", "Aviso", JOptionPane.YES_NO_OPTION);
