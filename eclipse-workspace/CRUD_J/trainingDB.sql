@@ -19,6 +19,11 @@ create table cars (
 
 insert into userdata(username, keyword) values ('admin', '1234567890');
 
-# select * from userdata;
+select * from userdata;
 
 # delete from userdata where id=?;
+
+# MEXENDO DIRETAMENTE COM O CAMPO ID (MANIPULAR APENAS EM TESTE DE PROJETO).
+#ALTER TABLE `trainingDB`.`userdata` DROP `id`; 
+#ALTER TABLE `trainingDB`.`userdata` ADD `id` INT(255) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+#
