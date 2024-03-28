@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -134,7 +135,7 @@ public class LoginScreen extends JFrame {
 						}
 						stmt.close();
 						con.close();
-					} catch (SQLException e1) {
+					} catch (SQLException | ParseException e1) {
 						JOptionPane.showMessageDialog(null, "Falha na conexão, tente novamente mais tarde.");
 						e1.printStackTrace();
 					}
@@ -170,17 +171,17 @@ public class LoginScreen extends JFrame {
 		labelEntrada.setBounds(330, 11, 444, 52);
 		contentPane.add(labelEntrada);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 52, 89));
-		panel.setBounds(0, 0, 320, 441);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel left = new JPanel();
+		left.setBackground(new Color(0, 52, 89));
+		left.setBounds(0, 0, 320, 441);
+		contentPane.add(left);
+		left.setLayout(null);
 		
 		imageLogo = new JLabel("");
 		imageLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		imageLogo.setIcon(new ImageIcon("C:\\Users\\Pichau\\eclipse-workspace\\CRUD_J\\assets\\freelogo.png"));
 		imageLogo.setBounds(10, 111, 300, 219);
-		panel.add(imageLogo);
+		left.add(imageLogo);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.setFocusable(false);
